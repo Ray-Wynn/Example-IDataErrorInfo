@@ -4,41 +4,27 @@ namespace Example_IDataErrorInfo
 {
     public static class TestData
     {
-        public static DataParents CreateDataItems(int parent, int children)
+        public static DataProducts CreateDataItems(int products)
         {
-            DataParents dataItems = new();
+            DataProducts dataItems = new();
 
-            for (int i = 0; i < parent; i++)
+            for (int i = 0; i < products; i++)
             {
-                DataParent dataItem = new()
+                DataProduct dataItem = new()
                 {
-                    ParentName = "Parent" + i,
-                    ParentAge = i,
-                    Children = CreateChildren(children)
+                    Product = "Product" + i,
+                    Stock = i,
                 };
+
+                if (i == 1)
+                {
+                    dataItem.Product = null;
+                }
 
                 dataItems.Add(dataItem);
             }
 
             return dataItems;
-        }
-
-        public static ObservableCollection<DataChildren> CreateChildren(int children)
-        {
-            ObservableCollection<DataChildren> Children = new();
-
-            for (int i = 0; i < children; i++)
-            {
-                DataChildren dataChildren = new()
-                {
-                    ChildName = "ChildName" + i,
-                    ChildAge = i,
-                };
-
-                Children.Add(dataChildren);
-            }
-
-            return Children;
         }
     }
 }

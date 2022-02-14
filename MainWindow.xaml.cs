@@ -23,7 +23,7 @@ namespace Example_IDataErrorInfo
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = TestData.CreateDataItems(4, 4);            
+            DataContext = TestData.CreateDataItems(4);            
         }
     }
 }

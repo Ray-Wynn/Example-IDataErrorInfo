@@ -17,9 +17,9 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid>
+    
+    <Grid Margin="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -31,87 +31,51 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="Example INotifyDataErrorInfo" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <!-- Products -->        
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="Products" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <DataGrid Name="DataGridProducts" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="True" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn  Header="Product" MinWidth="100" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=Product,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Product, UpdateSourceTrigger=PropertyChanged}"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn  Header="Stock" MinWidth="100" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=Stock,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
-        <!-- Parents -->
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="Parents" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <DataGrid Name="DataGridParents" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="True" ItemsSource="{Binding}">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn  Header="ParentName" MinWidth="100" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=ParentName,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding ParentName, UpdateSourceTrigger=PropertyChanged}"  />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="Product Selection" FontWeight="Bold" HorizontalAlignment="Center"/>
+        
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="Product" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Style="{StaticResource ErrorTextBox}" Text="{Binding SelectedItem.Product, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+        
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="Stock" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource ErrorTextBox}" Text="{Binding SelectedItem.Stock, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                <DataGridTemplateColumn  Header="ParentAge" MinWidth="100" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=ParentAge,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding ParentAge, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="Parent Selection" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Column="0" Grid.Row="3" Text="Parent Name" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedItem.ParentName, ElementName=DataGridParents, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Grid.Column="0" Grid.Row="4" Text="Parent Age" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedItem.ParentAge, ElementName=DataGridParents, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <!-- Children -->
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Text="Children" FontWeight="Bold" HorizontalAlignment="Center"/>
-
-        <DataGrid x:Name="DataGridChildren" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="True" 
-                  ItemsSource="{Binding SelectedItem.Children, ElementName=DataGridParents}">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn  Header="ChildName" MinWidth="100" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" 
-                                     Text="{Binding ChildName,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" 
-                                     Text="{Binding ChildName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn  Header="ChildAge" MinWidth="100" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=ChildAge,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding ChildAge, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Text="Child Selection" FontWeight="Bold" HorizontalAlignment="Center"/>
-
-        <TextBlock Grid.Column="2" Grid.Row="3" Text="Child Name" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding SelectedItem.ChildName, ElementName=DataGridChildren}"/>
-
-        <TextBlock Grid.Column="2" Grid.Row="4" Text="Child Age" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-        <TextBox Grid.Column="3" Grid.Row="4" Text="{Binding SelectedItem.ChildAge, ElementName=DataGridChildren}"/>
+        <TextBlock Grid.Column="2" Grid.Row="1" Text="Data Raw View" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <DataGrid x:Name="RawViewDataGrid" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" ItemsSource="{Binding}"/>
     </Grid>
 </Window>
