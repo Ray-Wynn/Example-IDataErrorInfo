@@ -18,7 +18,7 @@ namespace Example_IDataErrorInfo
 
                 if (i == 1)
                 {
-                    dataItem.Product = null;
+                    dataItem.Product = "";
                 }
 
                 dataItems.Add(dataItem);
