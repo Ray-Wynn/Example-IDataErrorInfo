@@ -35,7 +35,7 @@ namespace Example_IDataErrorInfo
                     case nameof(Product):
                         if (string.IsNullOrEmpty(Product))
                         {
-                            error = "Product name cannot be empty";
+                            error = "Product name required";
                         }
                         break;
 
