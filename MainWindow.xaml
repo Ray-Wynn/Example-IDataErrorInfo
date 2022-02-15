@@ -8,18 +8,6 @@
         d:DataContext="{d:DesignInstance local:DataProducts}"
         Title="IDataErrorInfo" SizeToContent="WidthAndHeight">
 
-    <Window.Resources>
-        <Style x:Key="ErrorTextBox"
-                   BasedOn="{StaticResource {x:Type TextBox}}"
-                   TargetType="{x:Type TextBox}">
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-    
     <Grid Margin="4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -45,7 +33,7 @@
                 <DataGridTemplateColumn  Header="Product" MinWidth="100" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=Product, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                            <TextBox Text="{Binding Path=Product, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -58,7 +46,7 @@
                 <DataGridTemplateColumn  Header="Stock" MinWidth="100" Width="auto">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBox Style="{StaticResource ResourceKey=ErrorTextBox}" Text="{Binding Path=Stock, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                            <TextBox Text="{Binding Path=Stock, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -101,10 +89,10 @@
         <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="Product Selection" FontWeight="Bold" HorizontalAlignment="Center"/>
         
         <TextBlock Grid.Column="0" Grid.Row="4" Text="Product" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Style="{StaticResource ErrorTextBox}" Text="{Binding SelectedItem.Product, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedItem.Product, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         
         <TextBlock Grid.Column="0" Grid.Row="5" Text="Stock" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource ErrorTextBox}" Text="{Binding SelectedItem.Stock, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding SelectedItem.Stock, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <TextBlock Grid.Column="2" Grid.Row="1" Text="Data Raw View" FontWeight="Bold" HorizontalAlignment="Center"/>
         <DataGrid x:Name="RawViewDataGrid" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" ItemsSource="{Binding}"/>
