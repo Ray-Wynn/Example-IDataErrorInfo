@@ -21,6 +21,7 @@ namespace Example_IDataErrorInfo
         #endregion
 
         #region IDataErrorInfo
+        [Description("Gets an error message indicating what is wrong with this object.")]
         public string Error => string.Empty;
 
         public string this[string columnName]
