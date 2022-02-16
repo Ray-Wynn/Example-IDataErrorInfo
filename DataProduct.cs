@@ -36,6 +36,14 @@ namespace Example_IDataErrorInfo
                         if (string.IsNullOrEmpty(Product))
                         {
                             error = "Product name required.";
+                            break;
+                        }
+                        else
+                        {
+                            if(Product.Length < 3)
+                            {
+                                error = "Product name < 3 characters long.";
+                            }
                         }
                         break;
 
