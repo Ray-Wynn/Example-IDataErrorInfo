@@ -35,14 +35,14 @@ namespace Example_IDataErrorInfo
                     case nameof(Product):
                         if (string.IsNullOrEmpty(Product))
                         {
-                            error = "Product name required";
+                            error = "Product name required.";
                         }
                         break;
 
                     case nameof(Stock):
                         if (Stock <= 0)
                         {
-                            error = "Stock <= 0 !";
+                            error = "Stock <= 0 !.";
                         }
                         break;
                 }
