@@ -8,8 +8,10 @@
         d:DataContext="{d:DesignInstance local:DataProducts}"
         Title="IDataErrorInfo" SizeToContent="WidthAndHeight">
 
+    <!-- Code derived from https://kmatyaszek.github.io/wpf%20validation/2019/03/06/wpf-validation-using-idataerrorinfo.html -->
     <Window.Resources>
-        <!-- Tooltip single error reporting -->
+        <!-- TextBox Validation Style
+                Tooltip single error reporting -->
         <Style x:Key="Example-TextBoxValidationError" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
@@ -17,17 +19,19 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        <!-- Display yellow exclamation mark within a red circle on row containing validation errors. -->
+
+        <!-- DataGrid.RowValidationErrorTemplate
+                Display ToolTip single error reported, and yellow exclamation mark within a red circle on row containing validation errors.-->
         <ControlTemplate x:Key="Example-RowValidationErrorTemplate">
-            <!-- Tooltip single error reporting -->
+            <!-- Tooltip single error reported -->
             <Grid Margin="0,-2,0,-2" ToolTip="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}, Path=(Validation.Errors)/ErrorContent}">
                 <Ellipse StrokeThickness="0" Fill="Red" Width="{TemplateBinding FontSize}" Height="{TemplateBinding FontSize}" />
                 <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" FontWeight="Bold" Foreground="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </ControlTemplate>
 
-        <!-- Display one or more row validation errors in RowDetails when row is selected. -->
+        <!-- DataGrid.RowDetailsTemplate
+                Display one or more row validation errors in RowDetails when row is selected. -->
         <DataTemplate x:Key="Example-RowDetailsTemplate">
             <StackPanel>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}, Path=(Validation.Errors)}">

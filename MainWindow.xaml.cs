@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Example_IDataErrorInfo
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Code derived from https://kmatyaszek.github.io/wpf%20validation/2019/03/06/wpf-validation-using-idataerrorinfo.html
     /// </summary>
     public partial class MainWindow : Window
     {        
