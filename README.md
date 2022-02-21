@@ -6,7 +6,7 @@ The file DataProducts.cs defines
 
 	public class DataProduct : INotifyPropertyChanged, IDataErrorInfo
 
-InotifyPropertyChanged provides the required binding interface between the data object class DataProduct with WPF with PropertyChanged event.
+InotifyPropertyChanged provides the provides the PropertyChanged event to provide the binding interface between the class DataProduct and WPF.
  
 
         public event PropertyChangedEventHandler? PropertyChanged;
