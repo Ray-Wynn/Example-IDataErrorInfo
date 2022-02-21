@@ -26,7 +26,7 @@ Code derived from https://kmatyaszek.github.io/wpf%20validation/2019/03/06/wpf-v
 
         <!-- DataGrid.RowDetailsTemplate
                 Display one or more row validation errors in RowDetails when row is selected. -->
-        <DataTemplate x:Key="Example-RowDetailsTemplate">
+        <DataTemplate x:Key="ShowValidationErrorInTextBlock">
             <StackPanel>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}, Path=(Validation.Errors)}">
                     <ItemsControl.ItemTemplate>

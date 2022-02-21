@@ -24,13 +24,13 @@ namespace Example_IDataErrorInfo
         [Description("Gets an error message indicating what is wrong with this object.")]
         public string Error => string.Empty;
 
-        public string this[string columnName]
+        public string this[string propertyName]
         {
             get
             {
                 string error = string.Empty;
 
-                switch (columnName)
+                switch (propertyName)
                 {
                     case nameof(Product):
                         if (string.IsNullOrEmpty(Product))
@@ -50,7 +50,7 @@ namespace Example_IDataErrorInfo
                     case nameof(Stock):
                         if (Stock <= 0)
                         {
-                            error = "Stock <= 0 !.";
+                            error = "Stock <= 0!";
                         }
                         break;
                 }
