@@ -37,4 +37,13 @@ Then a properties set calls OnPropertyChanged() to update the WPF view.
             }
         }
 
+## IDataErrorInfo Implemention
+
+Error Gets an error message indicating what is wrong with this object.
+Intended to represent non-property specific validation errors associated with the class. This property is of little value in WPF usage.
+
+    public string Error => string.Empty;
+
+Item[string] Gets the error message for the property with the given name.
+
 

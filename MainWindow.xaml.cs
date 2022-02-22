@@ -52,5 +52,10 @@ namespace Example_IDataErrorInfo
             string message = string.Format("@ {0} {1} ", DateTime.Now.ToString("hh:mm:ss tt"), e.Property);
             TargetUpdatedTextBlock.Text = message;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

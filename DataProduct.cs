@@ -21,9 +21,15 @@ namespace Example_IDataErrorInfo
         #endregion
 
         #region IDataErrorInfo
-        [Description("Gets an error message indicating what is wrong with this object.")]
+        // This property is of little value in WPF usage.
+        [Description ("Intended to represent non-property specific validation errors associated with the class."), Category("Miscellanious")]
         public string Error => string.Empty;
 
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <param name="propertyName">The bound properties name.</param>
+        /// <returns>The properties error messaage string.</returns>
         public string this[string propertyName]
         {
             get
@@ -61,12 +67,12 @@ namespace Example_IDataErrorInfo
         #endregion
 
         internal struct Inventory
-        { // Boilerplate ready to implement IEditableObject interface if required
+        { // Using a structure rather than private fields, then ready to implement IEditableObject interface if required.
             internal string Product { get; set; }
             internal int Stock { get; set; }            
         }
 
-        Inventory current;
+        Inventory current; // internal backing fields of properties
 
         public string Product
         {
