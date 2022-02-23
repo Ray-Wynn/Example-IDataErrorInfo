@@ -1,5 +1,6 @@
 # Example-IDataErrorInfo
 Demonstrates IDataErrorInfo implementation using DataGrid and TextBox binding.
+[Example project](https://github.com/Ray-Wynn/Example-IDataErrorInfo)
 
 
 The file DataProducts.cs defines
