@@ -85,3 +85,48 @@ _Intended to represent non-property specific validation errors associated with t
 	    }
 	}
 
+## XAML
+DataGrid "DataGridProducts" is bound to the DataContext which is assigned to DataProducts, an ObservableCollection of DataProduct.
+
+TextBoxValidationError style and two templates, RowValidationError & ValidationError are implemented in <Window.Resources> to provide customised user interface (UI) error reporting.
+
+	<DataGrid Name="DataGridProducts" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="True" 
+                  ItemsSource="{Binding}" 
+                  RowValidationErrorTemplate="{StaticResource RowValidationError}"
+                  RowDetailsTemplate="{StaticResource ValidationError}">
+            <DataGrid.Columns>
+                <!-- Product -->
+                <DataGridTemplateColumn x:Name="NameColumn" Header="Product" MinWidth="100" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Product, UpdateSourceTrigger=PropertyChanged, 
+                                     ValidatesOnDataErrors=True, NotifyOnValidationError=True, 
+                                     NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" 
+                                     SourceUpdated="TextBox_SourceUpdated"
+                                     TargetUpdated="TextBox_TargetUpdated"
+                                     Style="{StaticResource TextBoxValidationError}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!-- Stock -->
+                <DataGridTemplateColumn  Header="Stock" MinWidth="100" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Stock, UpdateSourceTrigger=PropertyChanged, 
+                                     ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True,
+                                     NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" 
+                                     SourceUpdated="TextBox_SourceUpdated"
+                                     TargetUpdated="TextBox_TargetUpdated"
+                                     Style="{StaticResource TextBoxValidationError}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+DataGridProducts SelectedItem property determines TextBox's binding, for example 'Product' binding as shown below.
+	
+	<TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" 
+                 Style="{StaticResource TextBoxValidationError}" 
+                 Text="{Binding SelectedItem.Product, ElementName=DataGridProducts, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+	
+	
