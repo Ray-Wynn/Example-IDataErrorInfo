@@ -17,7 +17,7 @@ INotifyPropertyChanged provides the PropertyChanged event to provide the binding
 	    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
 
-The following structure implementation makes later additions to the data class, such as IEditableObject.
+The following structure implementation makes later additions to the data class, such as IEditableObject simple.
 By declaring the structure and fields as internal hides the complexity and distraction.
 
 	internal struct Inventory
