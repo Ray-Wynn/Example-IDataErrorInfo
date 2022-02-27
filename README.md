@@ -117,8 +117,8 @@ TextBoxValidationError style and two templates, RowValidationError & ValidationE
 	- **Explicit**
 		- Updates the binding source only when you call the UpdateSource() method.			    
 
-				UpdateSourceTrigger=PropertyChanged, 
-				
+                                UpdateSourceTrigger=PropertyChanged,
+
 - **ValidatesOnDataErrors**	
 
 Setting this property provides an alternative to using the DataErrorValidationRule element explicitly. The DataErrorValidationRule is a built-in validation rule that checks for errors that are raised by the IDataErrorInfo implementation of the source object. If an error is raised, the binding engine creates a ValidationError with the error and adds it to the Validation.Errors collection of the bound element. The lack of an error clears this validation feedback, unless another rule raises a validation issue.
