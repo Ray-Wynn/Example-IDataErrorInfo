@@ -26,6 +26,8 @@ By declaring the structure and fields as internal hides the complexity and distr
 	    internal int Stock { get; set; }            
 	}
 
+	Inventory current; // internal struct of backing field of properties
+
 Then a properties set calls OnPropertyChanged() to update the WPF view.
 
 	public string Product
