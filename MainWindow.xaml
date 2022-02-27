@@ -70,12 +70,15 @@
                 <DataGridTemplateColumn x:Name="NameColumn" Header="Product" MinWidth="100" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding Path=Product, UpdateSourceTrigger=PropertyChanged, 
-                                     ValidatesOnDataErrors=True, NotifyOnValidationError=True, 
-                                     NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" 
-                                     SourceUpdated="TextBox_SourceUpdated"
-                                     TargetUpdated="TextBox_TargetUpdated"
-                                     Style="{StaticResource TextBoxValidationError}"/>
+                            <TextBox Text="{Binding Path=Product, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                ValidatesOnDataErrors=True, 
+                                NotifyOnValidationError=True, 
+                                NotifyOnSourceUpdated=True, 
+                                NotifyOnTargetUpdated=True}" 
+                                SourceUpdated="TextBox_SourceUpdated"
+                                TargetUpdated="TextBox_TargetUpdated"
+                                Style="{StaticResource TextBoxValidationError}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -83,12 +86,14 @@
                 <DataGridTemplateColumn  Header="Stock" MinWidth="100" Width="auto">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBox Text="{Binding Path=Stock, UpdateSourceTrigger=PropertyChanged, 
-                                     ValidatesOnExceptions=True, ValidatesOnDataErrors=True, NotifyOnValidationError=True,
-                                     NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" 
-                                     SourceUpdated="TextBox_SourceUpdated"
-                                     TargetUpdated="TextBox_TargetUpdated"
-                                     Style="{StaticResource TextBoxValidationError}"/>
+                            <TextBox Text="{Binding Path=Stock, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                ValidatesOnExceptions=True, 
+                                ValidatesOnDataErrors=True, NotifyOnValidationError=True,
+                                NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" 
+                                SourceUpdated="TextBox_SourceUpdated"
+                                TargetUpdated="TextBox_TargetUpdated"
+                                Style="{StaticResource TextBoxValidationError}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

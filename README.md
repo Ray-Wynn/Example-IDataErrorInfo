@@ -94,17 +94,6 @@ TextBoxValidationError style and two templates, RowValidationError & ValidationE
 
 ### Binding properties
 
-	<DataGrid Name="DataGridProducts" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="True" 
-                  ItemsSource="{Binding}" 
-                  RowValidationErrorTemplate="{StaticResource RowValidationError}"
-                  RowDetailsTemplate="{StaticResource ValidationError}">
-            <DataGrid.Columns>
-                <!-- Product -->
-                <DataGridTemplateColumn x:Name="NameColumn" Header="Product" MinWidth="100" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding Path=Product, 
-
 - **UpdateSourceTrigger**
 	
 	- **Default**
@@ -117,45 +106,50 @@ TextBoxValidationError style and two templates, RowValidationError & ValidationE
 		- Updates the binding source whenever the binding target element loses focus.
 
 	- **Explicit**
-		- Updates the binding source only when you call the UpdateSource() method.			    
-
-                                UpdateSourceTrigger=PropertyChanged,
+		- Updates the binding source only when you call the UpdateSource() method.	
 
 - **ValidatesOnDataErrors**	
 
 Setting this property provides an alternative to using the DataErrorValidationRule element explicitly. The DataErrorValidationRule is a built-in validation rule that checks for errors that are raised by the IDataErrorInfo implementation of the source object. If an error is raised, the binding engine creates a ValidationError with the error and adds it to the Validation.Errors collection of the bound element. The lack of an error clears this validation feedback, unless another rule raises a validation issue.
-				
-                                ValidatesOnDataErrors=True, 
-				
+
 - **NotifyOnValidationError**
 	
 If the binding has ValidationRules associated with it, the binding engine checks each rule each time it transfers the target property value to the source property. If a rule invalidates a value, the binding engine creates a ValidationError object and adds it to the Validation.Errors collection of the bound object. When the Validation.Errors property is not empty, the Validation.HasError attached property of the object is set to true. If the NotifyOnValidationError property of the Binding is set to true, then the binding engine raises the Validation.Error attached event on the object.
-				
-				NotifyOnValidationError=True, 
-				
-- **SourceUpdated _(Event)_**
 
-Occurs when a value is transferred from the binding target to the binding source, but only for bindings with the NotifyOnSourceUpdated value set to true.
-				
-                                SourceUpdated="TextBox_SourceUpdated"
-				
 - **NotifyOnSourceUpdated**
 
 Gets or sets a value that indicates whether to raise the SourceUpdated event when a value is transferred from the binding target to the binding source.	
 
-				NotifyOnSourceUpdated=True, 
-
-- **TargetUpdated _(Event)_**
-
-Occurs when a value is transferred from the binding source to the binding target, but only for bindings with the NotifyOnTargetUpdated value set to true.
-
-				TargetUpdated="TextBox_TargetUpdated"
-				
 - **NotifyOnTargetUpdated**
 
 Gets or sets a value that indicates whether to raise the TargetUpdated event when a value is transferred from the binding source to the binding target.
 				
-				NotifyOnTargetUpdated=True}"                                                                 
+- **SourceUpdated _(Event)_**
+
+Occurs when a value is transferred from the binding target to the binding source, but only for bindings with the NotifyOnSourceUpdated value set to true.
+
+- **TargetUpdated _(Event)_**
+
+Occurs when a value is transferred from the binding source to the binding target, but only for bindings with the NotifyOnTargetUpdated value set to true.
+				
+
+	<DataGrid Name="DataGridProducts" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="True" 
+                  ItemsSource="{Binding}" 
+                  RowValidationErrorTemplate="{StaticResource RowValidationError}"
+                  RowDetailsTemplate="{StaticResource ValidationError}">
+            <DataGrid.Columns>
+                <!-- Product -->
+                <DataGridTemplateColumn x:Name="NameColumn" Header="Product" MinWidth="100" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Product, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                ValidatesOnDataErrors=True, 
+                                NotifyOnValidationError=True, 
+                                NotifyOnSourceUpdated=True, 
+                                NotifyOnTargetUpdated=True}" 
+                                SourceUpdated="TextBox_SourceUpdated"
+                                TargetUpdated="TextBox_TargetUpdated"
                                 Style="{StaticResource TextBoxValidationError}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -165,17 +159,12 @@ Gets or sets a value that indicates whether to raise the TargetUpdated event whe
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBox Text="{Binding Path=Stock, 
-			    	UpdateSourceTrigger=PropertyChanged, 
+                                UpdateSourceTrigger=PropertyChanged, 
                                 ValidatesOnExceptions=True, 
-				ValidatesOnDataErrors=True, 
-				NotifyOnValidationError=True,
-				
-				SourceUpdated="TextBox_SourceUpdated"
-                                NotifyOnSourceUpdated=True, 
-				
-				TargetUpdated="TextBox_TargetUpdated"
-				NotifyOnTargetUpdated=True}" 
-                                                                
+                                ValidatesOnDataErrors=True, NotifyOnValidationError=True,
+                                NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" 
+                                SourceUpdated="TextBox_SourceUpdated"
+                                TargetUpdated="TextBox_TargetUpdated"
                                 Style="{StaticResource TextBoxValidationError}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
